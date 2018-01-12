@@ -1,0 +1,173 @@
+Library: com.livecode.library.androidbgaudio
+
+Type: library
+
+Summary: This library provides an API for playing background audio on Android
+
+Description:
+Use this library to start and control a background audio service that
+will continue playing when the current application is suspended.
+
+Name: androidStartAudioPlayingInBackground
+
+Type: handler
+
+Syntax: androidStartAudioPlayingInBackground(<pAudio>)
+
+Summary: Start playing audio in the background.
+
+Parameters: 
+
+pAudio: The full path to the audio file to start playing
+
+Description:
+Use the <androidStartAudioPlayingInBackground> handler to start playing
+the audio contained in the file <pAudio> in the background. The audio
+continues playing until it finishes while the app is suspended, or until
+it is paused or stopped using the <androidStopAudioPlayingInBackground>
+or <androidPauseAudioPlayingInBackground> handlers are used.
+
+References:
+androidStopAudioPlayingInBackground (handler),
+androidPauseAudioPlayingInBackground (handler)
+
+
+
+Name: androidIsAudioPlayingInBackground
+
+Type: handler
+
+Syntax: androidIsAudioPlayingInBackground()
+
+Summary: Whether there is currently any audio playing in the background
+
+Example:
+    if androidIsAudioPlayingInBackground() then
+       androidPauseAudioPlayingInBackground
+    end if
+
+Description:
+Use the <androidIsAudioPlayingInBackground> to find out if there is any
+audio playback currently occurring in the background.
+
+
+
+Name: androidPauseAudioPlayingInBackground
+
+Type: handler
+
+Syntax: androidPauseAudioPlayingInBackground()
+
+Summary: Pause the currently playing background audio
+
+Description:
+Use the <androidPauseAudioPlayingInBackground> handler to pause the
+audio playback in the background started by the last call to
+<androidStartAudioPlayingInBackground>. It can be resumed by calling
+<androidResumeAudioPlayingInBackground>.
+
+References:
+androidStartAudioPlayingInBackground (handler),
+androidResumeAudioPlayingInBackground (handler)
+
+
+
+Name: androidGetAudioDuration
+
+Type: handler
+
+Syntax: androidGetAudioDuration()
+
+Summary: Gets the duration of the file.
+
+Example:
+    if androidIsAudioPlayingInBackground() then
+       put androidGetAudioDuration() into tDuration
+    end if
+
+Description:
+Use the <androidGetAudioDuration> to get the duration
+of currently playing audio.
+
+If no duration is available (for example, if streaming live content), -1 is returned
+
+
+
+Name: androidResumeAudioPlayingInBackground
+
+Type: handler
+
+Syntax: androidResumeAudioPlayingInBackground()
+
+Summary: Resume the currently paused background audio
+
+Description:
+Use the <androidResumeAudioPlayingInBackground> handler to resume the
+audio playback in the background paused by the last call to
+<androidPauseAudioPlayingInBackground>.
+
+References: androidPauseAudioPlayingInBackground (handler)
+
+
+
+
+Name: androidGetAudioCurrentPosition
+
+Type: handler
+
+Syntax: androidGetAudioCurrentPosition()
+
+Summary: Gets the current playback position.
+
+Example:
+    if androidIsAudioPlayingInBackground() then
+       put androidGetAudioCurrentPosition() into tCurrentPossition
+    end if
+
+Description:
+Use the <androidGetAudioCurrentPosition> to get the current
+playback position.
+
+
+
+Name: androidSetAudioCurrentPosition
+
+Type: handler
+
+Syntax: androidSetAudioCurrentPosition(<pMilliseconds>)
+
+Summary: Sets the current playback position.
+
+Example:
+    if androidIsAudioPlayingInBackground() then
+       androidSetAudioCurrentPosition 25000 // milliseconds
+    end if
+
+Description:
+Use the <androidSetAudioCurrentPosition> to set the current
+playback position.
+
+Parameters:
+:
+
+
+
+
+Name: androidStopAudioPlayingInBackground
+
+Type: handler
+
+Syntax: androidStopAudioPlayingInBackground()
+
+Summary: Stop playing audio in the background.
+
+Description:
+Use the <androidStopAudioPlayingInBackground> handler to stop playing
+the audio playback in the background started by the last call to
+<androidStartAudioPlayingInBackground>.
+
+References: androidStartAudioPlayingInBackground (handler)
+
+
+
+
